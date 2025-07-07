@@ -1,4 +1,7 @@
+const pubsub = require('./pubsub')
+
 module.exports = function recebeAtividade(requisicao, resposta) {
+    const resultado = await pubsub(requisicao.body, 'atividades')
     console.log(requisicao.body)
-    resposta.send(JSON.stringify(requisicao.body))
+    resposta.send(resultado)
 }
