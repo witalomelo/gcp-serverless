@@ -11,7 +11,7 @@ module.exports = async function insereAtividade(evento) {
         console.log(resultados)
     } catch (erro) {
         console.error(erro)
-        console.log(erro.response)
+        console.log(JSON.stringify(erro.response))
     }
 
 }
