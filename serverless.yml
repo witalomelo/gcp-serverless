@@ -20,3 +20,9 @@ functions:
     handler: recebeAtividade
     events:
       - http: path
+  insereAtividade:
+    handler: insereAtividade
+    events:
+      - event:
+          eventType: google.pubsub.topic.publish
+          resource: projects/${self:provider.project}/topics/atividades
