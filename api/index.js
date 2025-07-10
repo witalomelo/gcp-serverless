@@ -1,14 +1,16 @@
-const koa = require('koa');
+const koa = require("koa");
+const processador = require("koa-bodyparser");
 const aplicacao = new koa();
+const pesquisar = require("../bigquery/pesquisar");
 
-aplicacao.use(function (contexto) {
-    contexto.status = 200
-    contexto.body = {
-        mensagem: 'API esta funcionando'
-    }
-    
-})
+aplicacao.use(processador())
+aplicacao.use(async function (contexto) {
 
-aplicacao.listen(3000)
+    const corpoDaRequisicao = contexto.request.body
+    contexto.status = 200;
+    contexto.body = await pesquisar(corpoDaRequisicao.filtro);
+});
 
-console.log('API rodando na porta 3000');
+aplicacao.listen(3000);
+
+console.log("API rodando na porta 3000");
