@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: forum-alura
+  name: forum-alura
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: forum-alura
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: forum-alura
+    spec:
+      containers:
+      - image: us-central1-docker.pkg.dev/useful-ward-464800-t5/forum-alura/forum-alura:latest
+        name: forum-alura
+        ports:
+        - containerPort: 3000
+        resources: {}
+status: {}
