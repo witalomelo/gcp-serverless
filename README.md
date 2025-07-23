@@ -71,10 +71,10 @@ gcloud config set project projeto_id
 
 ```bash
 # Build da imagem Docker
-docker build -t us-central1-docker.pkg.dev/projeto_id/forum-alura/forum-alura:latest .
+docker build -t us-central1-docker.pkg.dev/projeto_id/forum-test/forum-test:latest .
 
 # Push para o Artifact Registry
-docker push us-central1-docker.pkg.dev/projeto_id/forum-alura/forum-alura:latest
+docker push us-central1-docker.pkg.dev/projeto_id/forum-test/forum-test:latest
 ```
 
 ### 3. Deploy no Kubernetes
@@ -85,7 +85,7 @@ gcloud container clusters get-credentials forum --zone us-central1-a --project p
 
 # Criar secrets para credenciais
 kubectl create secret generic segredos-api \
-  --from-literal=USUARIO=forum-alura \
+  --from-literal=USUARIO=forum-test \
   --from-literal=SENHA=minhasenhasecreta
 
 # Criar secret para chave do Google Cloud
@@ -102,7 +102,7 @@ kubectl get pods
 
 ```bash
 # Ver logs da aplicação
-kubectl logs -f -l app=forum-alura
+kubectl logs -f -l app=forum-test
 
 # Verificar status do deployment
 kubectl get deployments
@@ -135,10 +135,10 @@ A aplicação usa Service Account para acessar o BigQuery:
 
 ```bash
 # Build local
-docker build -t forum-alura:latest .
+docker build -t forum-test:latest .
 
 # Executar localmente
-docker run --rm --name api -p 3000:3000 forum-alura:latest
+docker run --rm --name api -p 3000:3000 forum-test:latest
 ```
 
 ## ☁️ Serverless (Cloud Functions)
@@ -150,7 +150,7 @@ serverless deploy --region us-central1
 
 ## 📊 Monitoramento
 
-- Logs: `kubectl logs -f -l app=forum-alura`
+- Logs: `kubectl logs -f -l app=forum-test`
 - Métricas: Google Cloud Console → Kubernetes Engine
 - BigQuery: Google Cloud Console → BigQuery
 
@@ -169,7 +169,7 @@ gcloud projects get-iam-policy projeto_id \
 
 ```bash
 # Debug do pod
-kubectl describe pod -l app=forum-alura
+kubectl describe pod -l app=forum-test
 
 # Verificar eventos
 kubectl get events --sort-by='.lastTimestamp'
