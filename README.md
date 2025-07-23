@@ -1,4 +1,4 @@
-# Forum Alura - Aplicação DevOps
+# Aplicação DevOps
 
 Aplicação Node.js que integra com BigQuery para demonstrar práticas de DevOps no Google Cloud Platform (GCP).
 
